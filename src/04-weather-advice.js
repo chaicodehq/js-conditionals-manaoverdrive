@@ -21,5 +21,28 @@
  * @returns {string} The weather advisory message
  */
 export function getWeatherAdvice(temperature, isRaining) {
-  // Your code here
+  const manaTemp = temperature;
+
+  if (manaTemp >= 35)
+    return "Too hot for hiking - stay indoors and hydrate";
+
+  if (manaTemp >= 25 && !isRaining)
+    return "Great weather for hiking - don't forget sunscreen";
+
+  if (manaTemp >= 25 && isRaining)
+    return "Warm but rainy - consider indoor activities";
+
+  if (manaTemp >= 15 && !isRaining)
+    return "Perfect hiking weather - enjoy the trails";
+
+  if (manaTemp >= 15 && isRaining)
+    return "Cool and rainy - bring waterproof gear if hiking";
+
+  if (manaTemp >= 5 && !isRaining)
+    return "Chilly - wear layers for your hike";
+
+  if (manaTemp >= 5 && isRaining)
+    return "Cold and wet - best to stay indoors";
+
+  return "Too cold - stay warm indoors";
 }

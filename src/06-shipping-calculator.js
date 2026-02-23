@@ -29,5 +29,25 @@
  * @returns {number} Shipping cost, 0 for free shipping, or -1 for invalid input
  */
 export function calculateShipping(weight, country, orderTotal) {
-  // Your code here
+  const manaWeight = weight;
+  const shubCountry = country;
+  const manaTotal = orderTotal;
+
+  if (manaWeight <= 0 || manaTotal < 0) return -1;
+
+  const isDomestic = shubCountry === "US";
+
+  // Free shipping checks first
+  if (isDomestic && manaTotal > 50) return 0;
+  if (!isDomestic && manaTotal > 100) return 0;
+
+  if (isDomestic) {
+    if (manaWeight <= 1) return 5;
+    if (manaWeight <= 5) return 10;
+    return 15;
+  } else {
+    if (manaWeight <= 1) return 15;
+    if (manaWeight <= 5) return 25;
+    return 40;
+  }
 }

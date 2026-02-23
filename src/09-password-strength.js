@@ -26,5 +26,19 @@
  * @returns {string} "weak", "medium", "strong", or "very strong"
  */
 export function checkPasswordStrength(password) {
-  // Your code here
+  if (typeof password !== "string" || password.length === 0) return "weak";
+
+  const manaPass = password;
+
+  let shubScore = 0;
+  if (manaPass.length >= 8) shubScore++;
+  if (/[A-Z]/.test(manaPass)) shubScore++;
+  if (/[a-z]/.test(manaPass)) shubScore++;
+  if (/[0-9]/.test(manaPass)) shubScore++;
+  if (/[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/.test(manaPass)) shubScore++;
+
+  if (shubScore <= 1) return "weak";
+  if (shubScore <= 3) return "medium";
+  if (shubScore === 4) return "strong";
+  return "very strong";
 }

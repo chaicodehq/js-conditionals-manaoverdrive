@@ -33,5 +33,26 @@
  * @returns {number} Parking fee or -1 for invalid input
  */
 export function calculateParkingFee(hours, vehicleType) {
-  // Your code here
+  const manaHours = hours;
+  const shubType = vehicleType?.toLowerCase();
+
+  if (manaHours <= 0) return -1;
+
+  const rateCard = {
+    car: { first: 5, extra: 3, max: 30 },
+    motorcycle: { first: 3, extra: 2, max: 18 },
+    bus: { first: 10, extra: 7, max: 60 }
+  };
+
+  if (!(shubType in rateCard)) return -1;
+
+  const manaRounded = Math.ceil(manaHours);
+  const { first, extra, max } = rateCard[shubType];
+
+  let shubFee = first;
+  if (manaRounded > 1) {
+    shubFee += (manaRounded - 1) * extra;
+  }
+
+  return Math.min(shubFee, max);
 }

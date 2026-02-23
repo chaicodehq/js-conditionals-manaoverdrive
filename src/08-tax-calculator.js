@@ -26,5 +26,21 @@
  * @returns {number} Total tax amount owed
  */
 export function calculateTax(income) {
-  // Your code here
+  const manaIncome = income;
+  if (manaIncome <= 0) return 0;
+
+  let shubTax = 0;
+
+  if (manaIncome > 70000) {
+    shubTax += (manaIncome - 70000) * 0.30;
+    shubTax += 40000 * 0.20;
+    shubTax += 20000 * 0.10;
+  } else if (manaIncome > 30000) {
+    shubTax += (manaIncome - 30000) * 0.20;
+    shubTax += 20000 * 0.10;
+  } else if (manaIncome > 10000) {
+    shubTax += (manaIncome - 10000) * 0.10;
+  }
+
+  return shubTax;
 }

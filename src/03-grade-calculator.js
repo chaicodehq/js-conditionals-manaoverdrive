@@ -25,5 +25,14 @@
  * @returns {string} The letter grade or "INVALID"
  */
 export function calculateGrade(score, hasExtraCredit) {
-  // Your code here
+  if (typeof score !== "number" || score < 0 || score > 100 || Number.isNaN(score))
+    return "INVALID";
+
+  let manaScore = hasExtraCredit ? Math.min(score + 5, 100) : score;
+
+  if (manaScore >= 90) return "A";
+  if (manaScore >= 80) return "B";
+  if (manaScore >= 70) return "C";
+  if (manaScore >= 60) return "D";
+  return "F";
 }

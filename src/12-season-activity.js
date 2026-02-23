@@ -31,5 +31,29 @@
  * @returns {{ season: string, activity: string } | null}
  */
 export function getSeasonActivity(month, temperature) {
-  // Your code here
+  const manaMonth = month;
+  const shubTemp = temperature;
+
+  if (!Number.isInteger(manaMonth) || manaMonth < 1 || manaMonth > 12)
+    return null;
+
+  let manaSeason;
+
+  if ([12, 1, 2].includes(manaMonth)) manaSeason = "Winter";
+  else if ([3, 4, 5].includes(manaMonth)) manaSeason = "Spring";
+  else if ([6, 7, 8].includes(manaMonth)) manaSeason = "Summer";
+  else manaSeason = "Autumn";
+
+  let shubActivity;
+
+  if (manaSeason === "Winter")
+    shubActivity = shubTemp < 0 ? "skiing" : "ice skating";
+  else if (manaSeason === "Spring")
+    shubActivity = shubTemp > 20 ? "hiking" : "museum visit";
+  else if (manaSeason === "Summer")
+    shubActivity = shubTemp > 35 ? "swimming" : "cycling";
+  else
+    shubActivity = shubTemp > 15 ? "nature walk" : "reading at a cafe";
+
+  return { season: manaSeason, activity: shubActivity };
 }
